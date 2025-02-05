@@ -1,0 +1,25 @@
+Installation Instructions
+1. Unzip in downloads folder.
+2. Run Powershell script.
+3. Shortcut for the app will be created on desktop
+
+Script:
+cd\
+$Dirname="c:\GradingApp"
+if (-NOT (Test-Path $Dirname))
+{md GradingApp}
+
+
+
+Copy-Item -Path "$home\Downloads\4250" -Destination "c:\GradingApp" -Recurse
+
+cd GradingApp
+
+$SourceFilePath = "c:\GradingApp\4250\dist\main.exe"
+$ShortcutPath = "$home\Desktop\Grades.lnk"
+$WScriptObj = New-Object -ComObject ("WScript.Shell")
+$shortcut = $WscriptObj.CreateShortcut($ShortcutPath)
+$shortcut.TargetPath = $SourceFilePath
+$shortcut.Save() 
+
+
